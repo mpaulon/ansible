@@ -1,0 +1,13 @@
+zones:
+  paulon.org:
+    master: yes
+  iiv.re: 
+    master: yes
+  kelvinator.fr:
+    master: yes
+  servens.org:
+    master: no
+  maximebombar.fr:
+    master: no
+  satellist.fr:
+    master: no

@@ -1,0 +1,5 @@
+- name: Restart bind
+  systemd:
+    enabled: yes
+    state: restarted
+    name: named

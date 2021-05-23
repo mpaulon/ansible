@@ -1,0 +1,16 @@
+; {{ ansible_managed }}
+
+$ORIGIN {{ item }}.
+$TTL 10
+
+@           IN	SOA	    ns0.paulon.org.	root+kelvinator.paulon.org.	(2021051500	86400 3600 3600000 300)
+@           IN	NS	    ns0.paulon.org.
+@           IN	NS	    ns1.paulon.org.
+
+proxy	    IN	CNAME   kolok.iiv.re.
+
+git         IN  CNAME   proxy
+erebor      IN	CNAME	proxy
+moria	    IN	CNAME	proxy
+thunes	    IN	CNAME	proxy
+thunes-dev  IN	CNAME	proxy

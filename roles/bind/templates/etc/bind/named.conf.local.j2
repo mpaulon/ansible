@@ -1,0 +1,49 @@
+// {{ ansible_managed }}
+
+include "/etc/bind/zones.rfc1918";
+
+{% for z in zones %}
+{% if global_zones[z].get("acme") %}
+key "le.{{ z }}" {
+  algorithm hmac-sha512;
+  secret "{{ global_zones[z].get("acme") }}";
+};
+
+zone "_acme-challenge.{{ z }}" {
+        type master;
+        notify yes;
+        allow-transfer {
+    {% for s in global_zones[z]["slaves"] %}
+    {{ s }};
+    {% endfor %}
+        };
+        update-policy {
+          grant le.{{ z }}. name _acme-challenge.{{ z }} txt;
+        };
+        file "db._acme-challenge.{{ z }}";
+};
+{% endif %}
+
+zone "{{ z }}" IN {
+  {% if zones[z].master %}
+  type master;
+  file "db.{{ z }}";
+  allow-transfer {
+    {% for s in global_zones[z]["slaves"] %}
+    {{ s }};
+    {% endfor %}
+  };
+  notify yes;
+  {% else %}
+  type slave;
+  file "bak.{{ z }}";
+  masters {
+    {% for m in global_zones[z]["masters"] %}
+    {{ m }};
+    {% endfor %}
+  };
+  allow-transfer { "none"; };
+  notify no;
+  {% endif %}
+};
+{% endfor %}
