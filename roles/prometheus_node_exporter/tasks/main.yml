@@ -12,9 +12,3 @@
   loop:
     - etc/default/prometheus-node-exporter
   notify: Restart prometheus-node-exporter
-
-- name: Restart prometheus-node-exporter
-  systemd:
-    enabled: yes
-    state: restarted
-    name: prometheus-node-exporter
