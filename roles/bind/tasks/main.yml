@@ -11,12 +11,13 @@
 
 - name: Deploy config
   template:
-    src: 'etc/bind/{{ item.src }}'
-    dest: '/etc/bind/{{ item.dest }}'
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
     owner: root
     group: bind
-  with_items:
-    - { src: 'named.conf.local.j2', dest: 'named.conf.local' }
+  loop:
+    - etc/bind/named.conf.local
+    - etc/bind/named.conf.options
   notify: Restart bind
 
 - name: deploy zones

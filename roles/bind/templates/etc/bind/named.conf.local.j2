@@ -21,6 +21,11 @@ zone "_acme-challenge.{{ z }}" {
           grant le.{{ z }}. name _acme-challenge.{{ z }} txt;
         };
         file "db._acme-challenge.{{ z }}";
+    {% if global_zones[z].dnssec -%}
+    inline-signing yes;
+    auto-dnssec maintain;
+    serial-update-method increment;
+    {% endif -%}
 };
 {% endif %}
 
@@ -34,6 +39,11 @@ zone "{{ z }}" IN {
     {% endfor %}
   };
   notify yes;
+  {% if global_zones[z].dnssec -%}
+  inline-signing yes;
+  auto-dnssec maintain;
+  serial-update-method increment;
+  {% endif -%}
   {% else %}
   type slave;
   file "bak.{{ z }}";

@@ -10,6 +10,8 @@ global_zones:
       - 51.15.199.212
     acme: "{{ vault_zones['paulon.org'].acme }}"
     soa: ns0.paulon.org.
+    dnssec: yes
+    mail: root+dns.paulon.org
   iiv.re:
     masters:
       - 163.172.172.173
@@ -20,6 +22,8 @@ global_zones:
       - "2001:bc8:2c9b::"
       - 51.15.199.212
     soa: ns0.paulon.org.
+    dnssec: yes
+    mail: root+dns.paulon.org
   kelvinator.fr:
     masters:
       - 163.172.172.173
@@ -28,6 +32,8 @@ global_zones:
       - 163.172.19.69
     acme: "{{ vault_zones['kelvinator.fr'].acme }}"
     soa: ns0.paulon.org.
+    dnssec: yes
+    mail: root+dns.paulon.org
   servens.org:
     masters: 
       - 185.230.76.3

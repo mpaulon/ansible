@@ -1,6 +1,6 @@
 $ORIGIN .
 $TTL 86400	; 1 day
-_acme-challenge.{{ item }}. IN SOA {{ global_zones[item].soa }} {{ global_mail }}. (
+_acme-challenge.{{ item }}. IN SOA {{ global_zones[item].soa }} {{ global_zones[item].mail }}. (
 				89         ; serial
 				86400      ; refresh (1 day)
 				3600       ; retry (1 hour)
