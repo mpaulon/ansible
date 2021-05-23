@@ -1,0 +1,43 @@
+global_zones:
+  paulon.org:
+    masters:
+      - 163.172.172.173
+      - "2001:bc8:47a8:559::1"
+    slaves:
+      - 163.172.19.69
+      - 163.172.14.205
+      - "2001:bc8:2c9b::"
+    acme: "{{ vault_zones['paulon.org'].acme }}"
+    soa: ns0.paulon.org.
+  iiv.re:
+    masters:
+      - 163.172.172.173
+      - "2001:bc8:47a8:559::1"
+    slaves:
+      - 163.172.19.69
+      - 163.172.14.205
+      - "2001:bc8:2c9b::"
+    soa: ns0.paulon.org.
+  kelvinator.fr:
+    masters:
+      - 163.172.172.173
+      - "2001:bc8:47a8:559::1"
+    slaves:
+      - 163.172.19.69
+    acme: "{{ vault_zones['kelvinator.fr'].acme }}"
+    soa: ns0.paulon.org.
+  servens.org:
+    masters: 
+      - 185.230.78.228
+      - "2001:470:1f13:2f:0:ff:fe01:0"
+    slaves: []
+  maximebombar.fr:
+    masters:
+      - 51.15.204.106
+      - "2001:bc8:47ac:2017::1"
+    slaves: []
+  satellist.fr:
+    masters:
+      - 51.15.204.106
+      - "2001:bc8:47ac:2017::1"
+    slaves: []
