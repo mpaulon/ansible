@@ -1,0 +1,15 @@
+- name: Install prometheus
+  apt:
+    pkg:
+      - prometheus
+      - prometheus-alertmanager
+    state: present
+    update_cache: yes
+
+- name: Deploy configuration
+  template:
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}"
+  loop:
+    - etc/prometheus/prometheus.yml
+  notify: Restart prometheus

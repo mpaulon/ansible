@@ -1,0 +1,52 @@
+- name: Install requirements
+  apt:
+    pkg:
+      - apt-transport-https
+      - software-properties-common
+      - wget
+      - nginx
+    state: present
+    update_cache: yes
+
+- name: Add grafana repository key
+  apt_key:
+    url: https://packages.grafana.com/gpg.key
+    state: present
+
+- name: Add grafana repository
+  apt_repository:
+    repo: deb https://packages.grafana.com/oss/deb stable main
+    state: present
+    filename: grafana
+
+- name: Install grafana
+  apt:
+    pkg:
+      - grafana
+    state: present
+    update_cache: yes
+
+- name: Deploy grafana configuration
+  template:
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}"
+  loop:
+    - etc/grafana/ldap.toml
+    - etc/grafana/grafana.ini
+  notify: Restart grafana
+
+- name: Deploy nginx configuration
+  template:
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}"
+  loop:
+    - etc/nginx/sites-available/grafana
+  notify: Restart nginx
+
+- name: Enable nginx site
+  file:
+    src: /etc/nginx/sites-available/grafana
+    dest: /etc/nginx/sites-enabled/grafana
+    state: link
+  notify: Restart nginx
+

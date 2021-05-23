@@ -1,0 +1,20 @@
+- name: Install prometheus
+  apt:
+    pkg:
+      - prometheus-node-exporter
+    state: present
+    update_cache: yes
+
+- name: Deploy configuration
+  template:
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}"
+  loop:
+    - etc/default/prometheus-node-exporter
+  notify: Restart prometheus-node-exporter
+
+- name: Restart prometheus-node-exporter
+  systemd:
+    enabled: yes
+    state: restarted
+    name: prometheus-node-exporter

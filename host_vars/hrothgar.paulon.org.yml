@@ -1,3 +1,6 @@
+wireguard:
+  address: "fd01:10::"
+
 zones:
   paulon.org:
     master: yes

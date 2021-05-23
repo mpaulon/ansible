@@ -1,0 +1,3 @@
+- hosts: monitoring_clients
+  roles:
+    - prometheus_node_exporter

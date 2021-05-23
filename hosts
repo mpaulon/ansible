@@ -1,3 +1,10 @@
 [nameservers]
 tronjheim.paulon.org
 hrothgar.paulon.org
+
+[monitoring_servers]
+kuthian.iiv.re
+
+[monitoring_clients]
+kuthian.iiv.re
+hrothgar.paulon.org

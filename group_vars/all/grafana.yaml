@@ -1,0 +1,8 @@
+global_grafana:
+  domains: 
+    base: grafana.iiv.re
+  certificate: all
+  database:
+    name: grafana
+    user: grafana
+    password: "{ vault_grafana.database.password }"

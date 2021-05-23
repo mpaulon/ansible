@@ -1,0 +1,4 @@
+global_prometheus:
+  nodes:
+    - kuthian.adm.iiv.re:9100
+    - hrothgar.adm.iiv.re:9100
