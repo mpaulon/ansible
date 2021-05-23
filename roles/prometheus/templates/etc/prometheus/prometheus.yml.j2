@@ -42,3 +42,8 @@ scrape_configs:
     # machine by default.
     static_configs:
       - targets: {{ global_prometheus.nodes | to_json }}
+  
+  - job_name: jellyfin
+    scheme: https
+    static_configs:
+      - targets: {{ global_prometheus.jellyfin | to_json }}

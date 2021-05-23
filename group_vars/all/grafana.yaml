@@ -5,4 +5,4 @@ global_grafana:
   database:
     name: grafana
     user: grafana
-    password: "{ vault_grafana.database.password }"
+    password: "{{ vault_grafana.database.password }}"
