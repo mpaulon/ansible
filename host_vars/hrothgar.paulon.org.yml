@@ -1,5 +1,5 @@
 wireguard:
-  address: "fd01:10::"
+  address: "fd01:1::"
 
 zones:
   paulon.org:
