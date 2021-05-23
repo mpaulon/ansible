@@ -7,6 +7,7 @@ global_zones:
       - 163.172.19.69
       - 163.172.14.205
       - "2001:bc8:2c9b::"
+      - 51.15.199.212
     acme: "{{ vault_zones['paulon.org'].acme }}"
     soa: ns0.paulon.org.
   iiv.re:
@@ -17,6 +18,7 @@ global_zones:
       - 163.172.19.69
       - 163.172.14.205
       - "2001:bc8:2c9b::"
+      - 51.15.199.212
     soa: ns0.paulon.org.
   kelvinator.fr:
     masters:
@@ -28,8 +30,7 @@ global_zones:
     soa: ns0.paulon.org.
   servens.org:
     masters: 
-      - 185.230.78.228
-      - "2001:470:1f13:2f:0:ff:fe01:0"
+      - 185.230.76.3
     slaves: []
   maximebombar.fr:
     masters:
