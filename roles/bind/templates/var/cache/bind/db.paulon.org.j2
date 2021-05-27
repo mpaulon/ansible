@@ -5,53 +5,44 @@ $TTL 10
 
 @           IN SOA  ns0.paulon.org. {{ global_zones[item].mail }}. (2021052301	86400 3600 3600000 300)
 @           NS      ns0.paulon.org.
-@           NS      ns1.paulon.org.
-@           MX      10 hrothgar.paulon.org.
-@           TXT     "v=spf1 mx -all"
+@           NS      ns.graillo.tf.
+@           NS      ns0.maximebombar.fr.
+
+
 @           A       163.172.172.173
 @           AAAA    2001:bc8:47a8:559::1
-
 ns0         A       163.172.172.173
             AAAA    2001:bc8:47a8:559::1
-ns1         A       163.172.19.69
 
 
-hrothgar    A       163.172.172.173
-            AAAA    2001:bc8:47a8:559::1
-tronjheim   A       163.172.19.69
-kuthian     AAAA    2a01:cb04:493:6300:5ba4:7de8:ce12:4a42
-
-kuthian.adm AAAA    fd01::
-hrothgar.adm AAAA   fd01:1::
-brisingr.adm AAAA   fd01:2::
-
-saphira.adm AAAA    fd01:10::
-
+@           MX      10 hrothgar.paulon.org.
+@           TXT     "v=spf1 mx -all"
 _dmarc      TXT     "v=DMARC1; p=reject; rua=mailto:root+dmarc@paulon.org"
 _25._tcp.hrothgar.paulon.org.   TLSA	2 1 1 (
                 6AAED9E29963FF665EF9F9A7BE86D71670BBE032FD8D
                 66181957EFC18CEC546B )
 
+
+hrothgar    A       163.172.172.173
+            AAAA    2001:bc8:47a8:559::1
 linx        CNAME   hrothgar
 pad         CNAME   hrothgar
 totogros    CNAME   hrothgar
 coin        CNAME   hrothgar
 xn--5s9h    CNAME   coin
 
-git         CNAME   tronjheim
-minecraft   CNAME   tronjheim
-jitsi       CNAME   tronjheim
-chat        CNAME   tronjheim
-red1        CNAME   tronjheim
-cloud       CNAME   tronjheim
-galene      CNAME   tronjheim
 
-jellyfin	CNAME	kuthian
+kuthian     AAAA    2a01:cb04:493:6300:5ba4:7de8:ce12:4a42
+jellyfin    CNAME   kuthian
 transmission CNAME  kuthian
 grafana     CNAME   kuthian
-
-
 kolok       CNAME   kuthian
 xn--um8h    CNAME   kolok
 
+
+kuthian.adm AAAA    fd01::
+hrothgar.adm AAAA   fd01:1::
+brisingr.adm AAAA   fd01:2::
+
+saphira.adm AAAA    fd01:10::
 
