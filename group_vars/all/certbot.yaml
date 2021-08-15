@@ -1,0 +1,45 @@
+global_certbot:
+  certs:
+    all:
+      domains:
+        - paulon.org
+        - "*.paulon.org"
+        - "iiv.re"
+        - "*.iiv.re"
+      mail: michael+certbot@paulon.org
+      zone: _acme-challenge.paulon.org
+      record: _acme-challenge.paulon.org.
+      keyname: le.paulon.org
+      secret: "{{ vault_zones['paulon.org'].acme }}"
+      server: hrothgar.paulon.org
+    paulon.org:
+      domains:
+        - paulon.org
+        - "*.paulon.org"
+      mail: michael+certbot@paulon.org
+      zone: _acme-challenge.paulon.org
+      record: _acme-challenge.paulon.org.
+      keyname: le.paulon.org
+      secret: "{{ vault_zones['paulon.org'].acme }}"
+      server: hrothgar.paulon.org
+    iiv.re:
+      paulon.org:
+      domains:
+        - iiv.re
+        - "*.iiv.re"
+      mail: michael+certbot@paulon.org
+      zone: _acme-challenge.paulon.org
+      record: _acme-challenge.paulon.org.
+      keyname: le.paulon.org
+      secret: "{{ vault_zones['paulon.org'].acme }}"
+      server: hrothgar.paulon.org
+    irc.iiv.re:
+      paulon.org:
+      domains:
+        - irc.iiv.re
+      mail: michael+certbot@paulon.org
+      zone: _acme-challenge.paulon.org
+      record: _acme-challenge.paulon.org.
+      keyname: le.paulon.org
+      secret: "{{ vault_zones['paulon.org'].acme }}"
+      server: hrothgar.paulon.org

@@ -1,2 +1,5 @@
 wireguard:
   address: "fd01::"
+certbot:
+  certs:
+    - all

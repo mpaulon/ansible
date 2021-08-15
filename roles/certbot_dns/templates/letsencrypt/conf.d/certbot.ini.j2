@@ -1,0 +1,26 @@
+# To generate the certificate, please use the following command
+# certbot --config /etc/letsencrypt/conf.d/{{ item }}.ini certonly
+
+# Use a 4096 bit RSA key instead of 2048
+rsa-key-size = 4096
+
+# Always use the staging/testing server
+# server = https://acme-staging.api.letsencrypt.org/directory
+
+# Uncomment and update to register with the specified e-mail address
+email = {{ global_certbot.certs[item].mail }}
+
+# Uncomment to use a text interface instead of ncurses
+text = True
+
+# Yes I want to sell my soul and my guinea pig.
+agree-tos = True
+
+authenticator = manual
+preferred-challenges=dns
+manual-auth-hook = /etc/letsencrypt/scripts/{{ item }}-auth.sh 
+manual-cleanup-hook /etc/letsencrypt/scripts/{{ item }}-clean.sh 
+
+# Wildcard the domain
+cert-name = {{ item }}
+domains = {{ ", ".join(global_certbot.certs[item].domains) }}

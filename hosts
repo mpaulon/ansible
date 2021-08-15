@@ -1,6 +1,10 @@
 [nameservers]
 hrothgar.paulon.org
 
+
+[wildcard]
+kuthian.iiv.re
+
 [monitoring_servers]
 kuthian.iiv.re
 

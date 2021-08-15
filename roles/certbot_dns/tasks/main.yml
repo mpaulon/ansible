@@ -1,0 +1,51 @@
+---
+- name: Install certbot and nsupdate
+  apt:
+    update_cache: true
+    name:
+      - certbot
+      - bind9-dnsutils
+    state: present
+  register: apt_result
+  retries: 3
+  until: apt_result is succeeded
+
+- name: Create /etc/letsencrypt/conf.d and ../scripts
+  file:
+    path: /etc/letsencrypt/{{ item }}
+    state: directory
+  loop:
+    - conf.d
+    - scripts
+
+- name: Add key file for each certificate
+  template:
+    src: "letsencrypt/scripts/key.conf"
+    dest: "/etc/letsencrypt/scripts/{{ item }}-key.conf"
+    mode: 0600
+  loop: "{{ certbot.certs }}"
+
+- name: Add auth-script for each certificate
+  template:
+    src: "letsencrypt/scripts/auth.sh"
+    dest: "/etc/letsencrypt/scripts/{{ item }}-auth.sh"
+    mode: 0744
+  loop: "{{ certbot.certs }}"
+
+- name: Add clean-script for each certificate
+  template:
+    src: "letsencrypt/scripts/clean.sh"
+    dest: "/etc/letsencrypt/scripts/{{ item }}-clean.sh"
+    mode: 0744
+  loop: "{{ certbot.certs }}"
+
+- name: Add configuration for each certificate
+  template:
+    src: "letsencrypt/conf.d/certbot.ini.j2"
+    dest: "/etc/letsencrypt/conf.d/{{ item }}.ini"
+    mode: 0644
+  loop: "{{ certbot.certs }}"
+
+- name: Run certbot
+  command: certbot --non-interactive --agree-tos --config /etc/letsencrypt/conf.d/{{ item }}.ini certonly
+  loop: "{{ certbot.certs }}"
