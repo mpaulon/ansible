@@ -3,7 +3,7 @@
 $ORIGIN {{ item }}.
 $TTL 10
 
-@           IN SOA  ns0.paulon.org. {{ global_zones[item].mail }}. (2021052301	86400 3600 3600000 300)
+@           IN SOA  ns0.paulon.org. {{ global_zones[item].mail }}. (2021081500	86400 3600 3600000 300)
 @           NS      ns0.paulon.org.
 @           NS      ns.graillo.tf.
 @           NS      ns0.maximebombar.fr.
@@ -12,23 +12,24 @@ $TTL 10
 @           A       163.172.172.173
 @           AAAA    2001:bc8:47a8:559::1
 ns0         A       163.172.172.173
-            AAAA    2001:bc8:47a8:559::1
+ns0         AAAA    2001:bc8:47a8:559::1
 
 
 @           MX      10 hrothgar.paulon.org.
 @           TXT     "v=spf1 mx -all"
 _dmarc      TXT     "v=DMARC1; p=reject; rua=mailto:root+dmarc@paulon.org"
-_25._tcp.hrothgar.paulon.org.   TLSA	2 1 1 (
-                6AAED9E29963FF665EF9F9A7BE86D71670BBE032FD8D
-                66181957EFC18CEC546B )
+_25._tcp.hrothgar.paulon.org. TLSA 2 0 1 25847d668eb4f04fdd40b12b6b0740c567da7d024308eb6c2c96fe41d9de218d
+_submission._tcp SRV 0 1 587 hrothgar
+_imaps._tcp SRV 0 1 93 hrothgar
 
 
 hrothgar    A       163.172.172.173
-            AAAA    2001:bc8:47a8:559::1
+hrothgar    AAAA    2001:bc8:47a8:559::1
 linx        CNAME   hrothgar
 pad         CNAME   hrothgar
 totogros    CNAME   hrothgar
 coin        CNAME   hrothgar
+jellyfin2   CNAME  hrothgar
 xn--5s9h    CNAME   coin
 
 
@@ -36,8 +37,12 @@ kuthian     AAAA    2a01:cb04:493:6300:5ba4:7de8:ce12:4a42
 jellyfin    CNAME   kuthian
 transmission CNAME  kuthian
 grafana     CNAME   kuthian
+motion      CNAME   kuthian
+cloud       CNAME   kuthian
 kolok       CNAME   kuthian
 xn--um8h    CNAME   kolok
+
+irc         CNAME   5d890a3a-9ef2-4501-807d-e95ce1a45a49.pub.instances.scw.cloud.
 
 
 kuthian.adm AAAA    fd01::
